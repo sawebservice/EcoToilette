@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoToilette - Location Toilettes Sèches Événements | Souss-Massa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --green-primary: #2E7D32;
+            --green-light: #A5D6A7;
+            --wood-bg: linear-gradient(135deg, #F5F5DC 0%, #E8E4C5 100%);
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        * { font-family: 'Poppins', sans-serif; }
+        body { background: var(--wood-bg); overflow-x: hidden; }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(255,255,255,0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--green-primary) !important; }
+        .nav-link { color: #666 !important; font-weight: 400; transition: color 0.3s; }
+        .nav-link:hover { color: var(--green-primary) !important; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(46,125,50,0.8), rgba(46,125,50,0.6)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); animation: fadeInUp 1s ease; }
+        .hero p { font-size: 1.3rem; font-weight: 300; margin-bottom: 2rem; }
+        .btn-hero { 
+            background: white; color: var(--green-primary); 
+            padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: 600; 
+            border-radius: 50px; box-shadow: var(--shadow-hover); 
+            transition: all 0.3s; 
+        }
+        .btn-hero:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+/* Dans ton <style> */
+.advantage-block {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    transition: transform 0.4s;
+}
+.advantage-block:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.advantage-point {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+.icon {
+    font-size: 1.5rem;
+    width: 50px;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--green-primary);
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+}
+.section-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: var(--green-light);
+    display: block;
+    margin: 20px auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    #google_translate_element {
+        text-align: right;
+    }
+    .goog-te-gadget {
+        font-size: 0.9rem;
+    }
+	
+	/* Améliorer l’affichage du bouton Google Translate */
+#google_translate_element {
+    display: inline-block;
+}
+
+.goog-te-gadget {
+    font-size: 0.9rem !important;
+    color: #666 !important;
+}
+.goog-te-gadget a, 
+.goog-te-gadget span {
+    color: #2E7D32 !important;
+    text-decoration: none !important;
+}
+.goog-te-gadget-simple {
+    padding: 4px 8px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+}
+        /* Sections */
+        section { padding: 100px 0; }
+        .section-title { font-size: 3rem; font-weight: 600; color: var(--green-primary); margin-bottom: 3rem; text-align: center; position: relative; }
+        .section-title::after { content: ''; width: 80px; height: 4px; background: var(--green-light); display: block; margin: 20px auto; }
+
+        /* Cards */
+        .feature-card, .product-card {
+            background: white; border-radius: 20px; padding: 2rem; text-align: center;
+            box-shadow: var(--shadow-soft); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%; overflow: hidden;
+        }
+        .feature-card:hover, .product-card:hover {
+            transform: translateY(-15px); box-shadow: var(--shadow-hover);
+        }
+        .feature-icon { font-size: 4rem; color: var(--green-primary); margin-bottom: 1rem; }
+        .product-img { height: 250px; object-fit: cover; border-radius: 15px; }
+
+        /* Table */
+        .pricing-table { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); }
+        .pricing-table thead { background: var(--green-primary); color: white; }
+        .pricing-table th, .pricing-table td { padding: 1.5rem; text-align: center; }
+
+        /* Contact */
+        .contact-form { background: white; border-radius: 20px; padding: 3rem; box-shadow: var(--shadow-soft); }
+        .form-control { border: 2px solid #eee; border-radius: 15px; padding: 1rem; transition: border 0.3s; }
+        .form-control:focus { border-color: var(--green-primary); box-shadow: 0 0 0 0.2rem rgba(46,125,50,0.25); }
+
+        /* Footer */
+        footer { background: linear-gradient(135deg, #2E7D32, #1B5E20); color: white; padding: 3rem 0 1rem; }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .section-title { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+<!-- Barre de traduction Google (en haut à droite) -->
+<div class="container-fluid bg-white border-bottom shadow-sm py-2">
+    <div class="row">
+        <div class="col-12 text-end">
+            <small>
+                <span id="google_translate_element"></span>
+            </small>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-leaf me-2"></i>EcoToilette</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#avantages">Avantages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produits">Produits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tarifs">Tarifs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	
+
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>	
+
+    <!-- Hero -->
+    <section id="accueil" class="hero">
+        <div class="container fade-in">
+            <h1>Éco-Toilettes pour Vos Événements</h1>
+            <p>Sans eau, 100% écologiques et confortables. Idéal pour festivals, mariages et corporate à Souss-Massa.</p>
+            <a href="#contact" class="btn btn-hero"><i class="fas fa-quote-left me-2"></i>Devis Gratuit en 24h</a>
+        </div>
+    </section>
+
+    <!-- Avantages -->
+    <section id="avantages" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Pourquoi Nous Choisir ?</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                        <h4>🌿 100% Écologique</h4>
+                        <p>Compostage naturel, zéro eau gaspillée, matériaux durables.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>⚡ Autonome</h4>
+                        <p>Aucun raccordement eau/électricité nécessaire.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>✅ Hygiénique & Confort</h4>
+                        <p>Copeaux absorbants, ventilation, options PMR.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!-- Section "Avantages des toilettes sèches" -->
+<section id="avantages" class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- Titre principal -->
+                <h2 class="text-center mb-5">
+                    🌿 Avantages des toilettes sèches
+                </h2>
+
+                <!-- Points principaux -->
+                <div class="card mb-4">
+                    <h4 class="mb-4 text-success">✅ Les principaux avantages</h4>
+                    <div class="advantage-point mb-3">
+                        <div class="icon text-primary">💧</div>
+                        <div><strong>Économie d’eau</strong> – fonctionnement sans eau (aucune consommation d’eau potable).</div>
+                    </div>
+                    <div class="advantage-point mb-3">
+                        <div class="icon text-primary">♻️</div>
+                        <div><strong>100% écologiques</strong> – sans produits chimiques, ni rejets polluants.</div>
+                    </div>
+                    <div class="advantage-point mb-3">
+                        <div class="icon text-primary">🚫</div>
+                        <div><strong>Sans odeur ni nuisances</strong> si bien utilisées (copeaux, sciure, cendre, paille...).</div>
+                    </div>
+                    <div class="advantage-point mb-3">
+                        <div class="icon text-primary">💸</div>
+                        <div><strong>Solution économique et pratique</strong> – faciles à installer, déplacer et démonter.</div>
+                    </div>
+                    <div class="advantage-point mb-3">
+                        <div class="icon text-primary">🌱</div>
+                        <div><strong>Production de compost</strong> utile pour les sols, les jardins et les cultures.</div>
+                    </div>
+                    <div class="advantage-point">
+                        <div class="icon text-primary">🌍</div>
+                        <div><strong>Respect de l’environnement</strong> – dégradation naturelle des polluants, protection des écosystèmes.</div>
+                    </div>
+                </div>
+
+  
+                    <div class="text-center mt-4">
+                        <a href="#contact" class="btn btn-success btn-lg eco-badge">
+                            <i class="fas fa-quote-left me-2"></i>Demander un devis
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+	
+	
+
+    <!-- Produits -->
+    <section id="produits" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Nos Produits Premium</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card fade-in">
+                        <img src="img/01.png" class="product-img w-100" alt="Cabine Standard">
+                        <h4>Cabine Standard</h4>
+                        <p>Design bois élégant pour 50+ événements/an.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card fade-in">
+                        <img src="img/04.png" class="product-img w-100" alt="Cabine PMR">
+                        <h4>Cabine PMR</h4>
+                        <p>Accessibilité complète, normes UE.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card fade-in">
+                        <img src="img/05.png" class="product-img w-100" alt="Rack Modulaire">
+                        <h4>Rack 6-20 Unités</h4>
+                        <p>Solution compacte pour grands événements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Services Complets</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4 fade-in">
+                    <i class="fas fa-truck fa-3x text-success mb-3"></i>
+                    <h5>Livraison & Montage</h5>
+                    <p>Depuis Agadir, 24/48h.</p>
+                </div>
+                <div class="col-md-4 mb-4 fade-in">
+                    <i class="fas fa-broom fa-3x text-success mb-3"></i>
+                    <h5>Maintenance</h5>
+                    <p>Quotidienne, discrète.</p>
+                </div>
+                <div class="col-md-4 mb-4 fade-in">
+                    <i class="fas fa-users fa-3x text-success mb-3"></i>
+                    <h5>Personnel</h5>
+                    <p>Sensibilisation éco.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section id="tarifs" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Tarifs Transparents (HT/jour) 
+			Événement 100 personnes</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="pricing-table">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr><th>Produit</th><th>Prix</th><th>Options</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>2 toilettes sèches</td><td>600 à 1400 MAD</td><td>Gestion déchets (compost)
+								300 à 1 000 MAD</td></tr>
+                                <tr><td>Transport</td><td>300 à 1200 MAD</td><td>Si zone éloignée
+								Peut monter à 2 000 MAD</td></tr>
+                                <tr><td>Nettoyage</td><td>100 à 300 MAD</td><td>Agent sur place (événement chic)
+								400 à 1 000 MAD</td></tr>
+                                <tr><td>Lave-mains / station hygiène</td><td>150 à 300 MAD</td><td>Version premium (avec réserve d’eau + savon)
+								200 à 400 MAD</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="#contact" class="btn btn-success btn-lg px-5 py-2 rounded-pill shadow-lg"><i class="fas fa-calculator me-2"></i>Devis Personnalisé</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="row">
+             
+                <div class="col-lg-6 fade-in">
+                    <div class="h-100 d-flex flex-column justify-content-center">
+                        <h4><i class="fas fa-map-marker-alt me-2 text-success"></i>Agadir, Maroc</h4>
+                        <p class="mt-3"><i class="fas fa-phone me-2 text-success"></i>+212 664 89 00 87</p>
+                        <p><i class="fas fa-envelope me-2 text-success"></i>contact@ecotoilette.org</p>
+                        <div class="mt-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75979.42438234456!2d-9.660319512367712!3d30.41972101897337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3b6e9daad1cc9%3A0xbcf8d0b78bf48474!2sAgadir%2080000%2C%20Maroc!5e1!3m2!1sfr!2sbe!4v1775658866490!5m2!1sfr!2sbe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <p>&copy; 2026 Ecotoilette.org | Location Toilettes Sèches Événementielles | <a href="mentions.html" class="text-white-50">Mentions Légales</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) navbar.style.background = 'rgba(255,255,255,0.98)';
+            else navbar.style.background = 'rgba(255,255,255,0.95)';
+        });
+
+        // Form submit (demo)
+        document.getElementById('contactForm').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Devis envoyé ! Nous vous contactons sous 24h. 🎉');
+        });
+    </script>
+</body>
+</html>
